@@ -1,7 +1,7 @@
 import { UUID } from "crypto";
 
-export class InsertVideosRequestDto {
+export class SaveVideoRequestDto {
     userId: string;
     s3Key: string;
-    id: UUID;
+    videoId: UUID;
 }

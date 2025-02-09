@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import AwsConfig from 'src/interfaces/config/aws.config';
 import UploadSeviceConfig from 'src/interfaces/config/upload-service.config';
+import VideoServiceConfig from 'src/interfaces/config/video-service.config';
 
 @Injectable()
-export default class EnvironmentConfigService implements AwsConfig, UploadSeviceConfig {
+export default class EnvironmentConfigService implements AwsConfig, UploadSeviceConfig, VideoServiceConfig {
   constructor(private configService: ConfigService) { }
 
   getAwsClientId(): string {
@@ -29,6 +30,10 @@ export default class EnvironmentConfigService implements AwsConfig, UploadSevice
 
   getUploadServiceUrl(): string {
     return this.configService.get<string>('UPLOAD_SERVICE_URL') || '';
+  }
+
+  getVideoServiceUrl(): string {
+    return this.configService.get<string>('VIDEO_SERVICE_URL') || '';
   }
 
 }

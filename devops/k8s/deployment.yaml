@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hacka-video-bff-deployment
+  labels:
+    app: hacka-video-bff-app
+spec:
+  replicas: 1  # Número de réplicas/pods que serão criadas
+  selector:
+    matchLabels:
+      app: hacka-video-bff-app
+  template:
+    metadata:
+      labels:
+        app: hacka-video-bff-app
+    spec:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: apis-node-group
+      containers:
+      - name: hacka-video-bff-app
+        image: luizpainodev/hacka-video-bff:latest
+        envFrom:
+        - configMapRef:
+            name: hacka-video-bff-config-map
+        - secretRef:
+            name: hacka-video-bff-secrets
+        ports:
+        - containerPort: 3002  # Porta em que sua aplicação escuta

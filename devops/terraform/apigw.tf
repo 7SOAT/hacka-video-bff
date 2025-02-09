@@ -7,13 +7,13 @@ resource "aws_api_gateway_vpc_link" "bff" {
 #endregion
 #region [/auth]
 resource "aws_api_gateway_resource" "proxy" {
-  rest_api_id = aws_api_gateway_rest_api.main.id
-  parent_id   = aws_api_gateway_rest_api.main.root_resource_id
+  rest_api_id = local.apigw_id
+  parent_id   = local.apigw_root_resource_id
   path_part   = "{proxy+}"
 }
 
 resource "aws_api_gateway_method" "proxy" {
-  rest_api_id   = aws_api_gateway_rest_api.main.id
+  rest_api_id   = local.apigw_id
   resource_id   = aws_api_gateway_resource.proxy.id
   http_method   = "ANY"
   authorization = "NONE"
@@ -25,7 +25,7 @@ resource "aws_api_gateway_method" "proxy" {
 }
 
 resource "aws_api_gateway_integration" "proxy" {
-  rest_api_id = aws_api_gateway_rest_api.main.id
+  rest_api_id = local.apigw_id
   resource_id = aws_api_gateway_resource.proxy.id
   http_method = "ANY"
 
@@ -42,6 +42,6 @@ resource "aws_api_gateway_integration" "proxy" {
   }
 
   connection_type = "VPC_LINK"
-  connection_id   = aws_api_gateway_vpc_link.main.id
+  connection_id   = aws_api_gateway_vpc_link.bff.id
 }
 #endregion

@@ -4,6 +4,7 @@ import AWSProvider from "./aws/aws.provider";
 import EnvironmentConfigModule from "@config/environment-config/environment-config.module";
 import EnvironmentConfigService from "@config/environment-config/environment-config.service";
 import UploadServiceProvider from "./upload-service/upload-service.provider";
+import VideosServiceProvider from "./video-service/video-service.provider";
 
 
 
@@ -12,9 +13,10 @@ import UploadServiceProvider from "./upload-service/upload-service.provider";
     providers: [
         EnvironmentConfigService,
         AWSProvider,
-        UploadServiceProvider
+        UploadServiceProvider,
+        VideosServiceProvider
     ],
-    exports: [AWSProvider, UploadServiceProvider]
+    exports: [AWSProvider, UploadServiceProvider, VideosServiceProvider]
 })
 
 export default class ProvidersModule { }

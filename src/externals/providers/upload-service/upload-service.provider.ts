@@ -20,11 +20,14 @@ export default class UploadServiceProvider {
    async getPreSignedUrl(filename: string, userId: UUID): Promise<GetPreSignedUrlResponseDto> {
       const params: GetPreSignedUrlRequestDto = { filename, userId };
       const url = `${this.updload_service_url}/v1/presigned-url`;
-
+      
       try {
-         const { data } = await this._httpService.axiosRef.post(
+         console.log(`request params: `, {
             url,
-            null,
+            params
+         })
+         const { data } = await this._httpService.axiosRef.get(
+            url,            
             { params }
          );
 

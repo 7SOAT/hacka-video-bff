@@ -6,4 +6,3 @@ metadata:
 data:
   NODE_ENV: "production"
   API_PORT: "3002"
-  AWS_COGNITO_DOMAIN: "afluga"

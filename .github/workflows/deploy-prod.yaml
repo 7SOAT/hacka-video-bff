@@ -20,7 +20,7 @@ on:
         description: 'AWS Session Token'
         required: true
         type: string      
-        
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -76,6 +76,8 @@ jobs:
             --from-literal=AWS_SECRET_ACCESS_KEY=${{ github.event.inputs.aws-secret-access-key }} \
             --from-literal=UPLOAD_SERVICE_URL=${{ secrets.UPLOAD_SERVICE_URL }} \
             --from-literal=VIDEO_SERVICE_URL=${{ secrets.VIDEO_SERVICE_URL }} \
+            --from-literal=AWS_CLIENT_ID=${{ secrets.AWS_CLIENT_ID }} \
+            --from-literal=AWS_CLIENT_SECRET=${{ secrets.AWS_CLIENT_SECRET }} \
             --from-literal=AWS_COGNITO_DOMAIN=${{ secrets.AWS_COGNITO_DOMAIN }} \
             --dry-run=client -o yaml | kubectl apply -f -
       

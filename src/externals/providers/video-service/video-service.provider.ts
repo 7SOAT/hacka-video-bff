@@ -22,6 +22,11 @@ export default class VideosServiceProvider {
       const url = `${this.videos_service_url}/v1/videos`;
 
       try {
+         console.log(`saving video parameters`, {
+            url,
+            request
+         });
+         
          const { data } = await this._httpService.axiosRef.post(
             url,
             request

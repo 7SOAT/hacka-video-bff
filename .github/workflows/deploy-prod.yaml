@@ -20,6 +20,10 @@ on:
         description: 'AWS Session Token'
         required: true
         type: string      
+      aws-cognito-domain:
+        description: 'AWS Domain'
+        required: true
+        type: string      
 
 jobs:
   build-and-push:
@@ -76,7 +80,7 @@ jobs:
             --from-literal=AWS_SECRET_ACCESS_KEY=${{ github.event.inputs.aws-secret-access-key }} \
             --from-literal=UPLOAD_SERVICE_URL=${{ secrets.UPLOAD_SERVICE_URL }} \
             --from-literal=VIDEO_SERVICE_URL=${{ secrets.VIDEO_SERVICE_URL }} \
-            --from-literal=AWS_COGNITO_DOMAIN=${{ secrets.AWS_COGNITO_DOMAIN }} \            
+            --from-literal=AWS_COGNITO_DOMAIN=${{ github.event.inputs.aws-cognito-domain }} \            
             --dry-run=client -o yaml | kubectl apply -f -
       
       - name: Deploy to Kubernetes

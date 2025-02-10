@@ -20,17 +20,17 @@ export class VideosController {
 
   @Get('url')
   async getPreSignedUrl(
-    @Query() { filename }: VideoUrlRequestDto
+    @Query() { filename, userId }: VideoUrlRequestDto
   ): Promise<VideoUrlResponseDto> {
-    return await this._videoService.getPreSignedUrl(filename);
+    return await this._videoService.getPreSignedUrl(filename, userId);
   }
 
   @Get('/:id/download')
   async getDownlaodUrl(
     @Param('id') videoId: string,
     @Query() { filename }: VideoUrlRequestDto
-  ): Promise<VideoUrlResponseDto> {
-    return await this._videoService.getPreSignedUrl(filename);
+  ) {
+    //
   }
 
   @Post('save')

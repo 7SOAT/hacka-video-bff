@@ -16,8 +16,8 @@ export class VideosService {
     private _videosServiceProvider: VideosServiceProvider
   ) { }
 
-  async getPreSignedUrl(filename: string): Promise<VideoUrlResponseDto> {
-    return await this._uploadServiceProvider.getPreSignedUrl(filename);
+  async getPreSignedUrl(filename: string, userId: UUID): Promise<VideoUrlResponseDto> {
+    return await this._uploadServiceProvider.getPreSignedUrl(filename, userId);
   }
 
   async getVideosByUserId(userId: UUID): Promise<{

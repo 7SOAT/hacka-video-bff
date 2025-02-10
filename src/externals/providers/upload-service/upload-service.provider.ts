@@ -4,6 +4,7 @@ import EnvironmentConfigService from "@config/environment-config/environment-con
 import { GetPreSignedUrlResponseDto } from "./dto/response/get-pre-signed-url.response.dto";
 import { GetPreSignedUrlRequestDto } from "./dto/request/get-pre-signed-url.request.dto";
 import UploadSeviceConfig from "src/interfaces/config/upload-service.config";
+import { UUID } from "crypto";
 
 export default class UploadServiceProvider {
    private readonly updload_service_url: string = this._uploadServiceConfig.getUploadServiceUrl();
@@ -16,8 +17,8 @@ export default class UploadServiceProvider {
       private readonly _uploadServiceConfig: UploadSeviceConfig
    ) { }
 
-   async getPreSignedUrl(filename: string): Promise<GetPreSignedUrlResponseDto> {
-      const params: GetPreSignedUrlRequestDto = { filename };
+   async getPreSignedUrl(filename: string, userId: UUID): Promise<GetPreSignedUrlResponseDto> {
+      const params: GetPreSignedUrlRequestDto = { filename, userId };
       const url = `${this.updload_service_url}/v1/presigned-url`;
 
       try {

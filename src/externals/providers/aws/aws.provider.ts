@@ -34,11 +34,6 @@ export default class AWSProvider {
       };
 
       try {
-         console.log(`auth parameters: `, {
-            url,
-            headers,
-            params
-         });
          const { data } = await this._httpService.axiosRef.post(
             url,
             null,

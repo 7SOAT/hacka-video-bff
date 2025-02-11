@@ -16,6 +16,7 @@ export default async function bootstrap(): Promise<void> {
     .setTitle('Tech Challenge Monolith API')
     .setDescription('Application for creating and tracking orders.')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document: OpenAPIObject = SwaggerModule.createDocument(app, config);

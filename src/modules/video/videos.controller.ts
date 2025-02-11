@@ -47,8 +47,8 @@ export class VideosController {
     @Query() body: SaveVideoRequestDto,
     @Request() req: any
   ): Promise<SaveVideoResponseDto> {
-    const { videoId, s3Key } = body;
+    const { videoId, filename } = body;
     const { userId } = this._jwtAuthService.decodeToken(req.headers.authorization);
-    return await this._videoService.saveVideo(videoId, userId, s3Key);
+    return await this._videoService.saveVideo(videoId, userId, filename);
   }
 }

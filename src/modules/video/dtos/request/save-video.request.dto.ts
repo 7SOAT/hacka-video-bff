@@ -3,7 +3,7 @@ import { UUID } from "crypto";
 
 export class SaveVideoRequestDto {
     @ApiProperty()
-    s3Key: string;
+    filename: string;
 
     @ApiProperty()
     videoId: UUID;

@@ -10,8 +10,13 @@ export default class VideoServiceProviderGateway {
     ) { }
 
     async insertVideo(videoId: UUID, userId: UUID, s3Key: string): Promise<{
-        id: UUID;
-        userId: UUID;
+        id: UUID,
+        userId: UUID,
+        s3Key: string,
+        status: string,
+        s3ZipKey: string,
+        createdAt: Date,
+        updatedAt: Date,
     }> {
         const request: PostVideoRequestDto = {
             id: videoId,
@@ -21,7 +26,7 @@ export default class VideoServiceProviderGateway {
 
         const response = await this._videoServiceProvider.insertVideo(request);
 
-        return { id: response.id, userId: response.userId };
+        return response;
     }
 
     async getVideosByUserId(videoId: UUID): Promise<{

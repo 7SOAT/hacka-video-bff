@@ -49,9 +49,9 @@ export class VideosController {
     return await this._videoService.getPreSignedUrl(filename, userId);
   }
 
-  @Get(':id/download')
+  @Get('getSignedUrl')
   async getDownlaodUrl(
-    @Param('id') videoId: UUID,
+    @Query('videoId') videoId: UUID,
     @Request() req: any
   ) {
     const { userId } = this._jwtAuthService.decodeToken(req.headers.authorization);

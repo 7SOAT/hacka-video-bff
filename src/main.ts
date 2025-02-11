@@ -19,10 +19,16 @@ export default async function bootstrap(): Promise<void> {
     .addBearerAuth()
     .build();
 
+  app.enableCors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: '*',
+  });
+
   const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/', app, document);
 
-  await app.listen(process.env.API_PORT || 3000);
+  await app.listen(process.env.API_PORT || 3001);
 }
 
 bootstrap();

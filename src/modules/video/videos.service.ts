@@ -35,7 +35,7 @@ export class VideosService {
   async saveVideo(videoId: UUID, userId: UUID, filename: string): Promise<SaveVideoResponseDto> {
     const s3Key = `${userId}/${videoId}/${filename}`;
     const response = await this._videosServiceGateway.insertVideo(videoId, userId, s3Key);
-    return { videoId: response.id, userId: response.userId };
+    return response;
   }
 
   async downloadVideo(videoId: UUID, userId: UUID): Promise<string> {

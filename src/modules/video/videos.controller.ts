@@ -49,7 +49,7 @@ export class VideosController {
     return await this._videoService.getPreSignedUrl(filename, userId);
   }
 
-  @Get('getSignedUrl')
+  @Get('get-signed-url')
   async getDownlaodUrl(
     @Query('videoId') videoId: UUID,
     @Request() req: any

@@ -26,7 +26,7 @@ export default class VideosServiceProvider {
             url,
             request
          });
-         
+
          const { data } = await this._httpService.axiosRef.post(
             url,
             request

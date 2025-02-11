@@ -41,4 +41,5 @@ export class VideosService {
   async downloadVideo(videoId: UUID, userId: UUID): Promise<string> {
     return await this._videosServiceProvider.getVideoDownloadUrl(videoId, userId);
   }
+
 }

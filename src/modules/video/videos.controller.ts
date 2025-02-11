@@ -24,6 +24,22 @@ export class VideosController {
     private _videosServiceProvider: VideosServiceProvider
   ) { }
 
+  @Get()
+  async getVideosByUser(
+    @Request() req: any
+  ): Promise<{
+    id: UUID,
+    userId: UUID,
+    s3Key: string,
+    status: string,
+    s3ZipKey: string,
+    createdAt: Date,
+    updatedAt: Date,
+  }[]> {
+    const { userId } = this._jwtAuthService.decodeToken(req.headers.authorization);
+    return await this._videoService.getVideosByUserId(userId);
+  }
+
   @Get('url')
   async getPreSignedUrl(
     @Query() { filename }: VideoUrlRequestDto,

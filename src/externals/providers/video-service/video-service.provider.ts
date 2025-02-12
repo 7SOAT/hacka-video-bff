@@ -35,7 +35,7 @@ export default class VideosServiceProvider {
    }
 
    async getVideoDownloadUrl(videoId: UUID, userId: UUID): Promise<string> {
-      const url = `${this.videos_service_url}/v1/videos/${videoId}/user/${userId}/`;
+      const url = `${this.videos_service_url}/v1/videos/download/by-id/${videoId}?userId=${userId}`;
 
       try {
          const { data } = await this._httpService.axiosRef.get(url);

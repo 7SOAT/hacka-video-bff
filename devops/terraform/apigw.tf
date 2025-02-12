@@ -19,7 +19,7 @@ resource "aws_api_gateway_resource" "videos_url" {
 resource "aws_api_gateway_resource" "videos_get_signed_url" {
   rest_api_id = local.apigw_id
   parent_id   = aws_api_gateway_resource.videos.id
-  path_part   = "getSignedUrl"
+  path_part   = "get-signed-url"
 }
 resource "aws_api_gateway_resource" "videos_save" {
   rest_api_id = local.apigw_id
@@ -112,7 +112,7 @@ resource "aws_api_gateway_integration" "get_videos_get_signed_url" {
 
   integration_http_method = "ANY"
   type                    = "HTTP_PROXY"
-  uri                     = "http://${local.loadbalancer_dns_name}/videos/getSignedUrl"
+  uri                     = "http://${local.loadbalancer_dns_name}/videos/get-signed-url"
   passthrough_behavior    = "WHEN_NO_MATCH"
   content_handling        = "CONVERT_TO_TEXT"
 
